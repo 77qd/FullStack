@@ -2,20 +2,20 @@ sequenceDiagram
     participant Przeglądarka
     participant Serwer
 
-    Przeglądarka->>Serwer: GET /spa
+    Przeglądarka->>Serwer: GET https://studies.cs.helsinki.fi/exampleapp/spa
     activate Serwer
     Serwer-->>Przeglądarka: HTML dokument
     deactivate Serwer
 
-    Przeglądarka->>Serwer: GET /main.css
+    Przeglądarka->>Serwer: GET https://studies.cs.helsinki.fi/exampleapp/main.css
     Serwer-->>Przeglądarka: Plik CSS
 
-    Przeglądarka->>Serwer: GET /spa.js
+    Przeglądarka->>Serwer: GET https://studies.cs.helsinki.fi/exampleapp/main.js
     Serwer-->>Przeglądarka: Plik JavaScript
 
     Note right of Przeglądarka: Przeglądarka wykonuje JS i pobiera dane notatek
 
-    Przeglądarka->>Serwer: GET /data.json
+    Przeglądarka->>Serwer: GET https://studies.cs.helsinki.fi/exampleapp/data.json
     activate Serwer
     Serwer-->>Przeglądarka: Dane JSON (lista notatek)
     deactivate Serwer

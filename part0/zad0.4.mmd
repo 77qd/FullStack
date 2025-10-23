@@ -2,29 +2,27 @@ sequenceDiagram
     participant Przeglądarka
     participant Serwer
 
-    Note right of Przeglądarka: Użytkownik wpisuje tekst i klika "Save"
+    Note right of Przeglądarka: Użytkownik wpisuje tekst i klika "Save" 
 
-    Przeglądarka->>Serwer: POST /new_note (dane formularza)
+    Przeglądarka->>Serwer: POST https://studies.cs.helsinki.fi/exampleapp/new_note
     activate Serwer
-    Serwer-->>Przeglądarka: 302 Redirect do /notes
+    Serwer-->>Przeglądarka: HTML z aktualną listą notatek
     deactivate Serwer
 
     Note right of Przeglądarka: Przeglądarka przeładowuje stronę /notes
 
-    Przeglądarka->>Serwer: GET /notes
+    Przeglądarka->>Serwer: GET https://studies.cs.helsinki.fi/exampleapp/notes
     activate Serwer
     Serwer-->>Przeglądarka: Dokument HTML
     deactivate Serwer
 
-    Przeglądarka->>Serwer: GET /main.css
+    Przeglądarka->>Serwer: GET https://studies.cs.helsinki.fi/exampleapp/main.css
     Serwer-->>Przeglądarka: Plik CSS
 
-    Przeglądarka->>Serwer: GET /main.js
+    Przeglądarka->>Serwer: GET https://studies.cs.helsinki.fi/exampleapp/main.js
     Serwer-->>Przeglądarka: Plik JavaScript
 
-    Note right of Przeglądarka: JS pobiera dane notatek z serwera
-
-    Przeglądarka->>Serwer: GET /data.json
+    Przeglądarka->>Serwer: GET https://studies.cs.helsinki.fi/exampleapp/data.json
     activate Serwer
     Serwer-->>Przeglądarka: Dane JSON z nową notatką
     deactivate Serwer

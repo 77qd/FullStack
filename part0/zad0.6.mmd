@@ -4,12 +4,9 @@ sequenceDiagram
 
     Note right of Przeglądarka: Użytkownik wpisuje notatkę i klika "Save"
 
-    Note right of Przeglądarka: JS blokuje domyślne zachowanie formularza (bez przeładowania)
-    Note right of Przeglądarka: JS dodaje nową notatkę lokalnie i odświeża widok
-
-    Przeglądarka->>Serwer: POST /new_note_spa (JSON z treścią i datą)
+    Przeglądarka->>Serwer: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
     activate Serwer
-    Serwer-->>Przeglądarka: 201 Created
+    Serwer-->>Przeglądarka: JSON nowej notatki z ID i datą
     deactivate Serwer
 
     Note right of Przeglądarka: Strona nie jest przeładowywana
