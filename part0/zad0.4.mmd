@@ -1,36 +1,32 @@
 sequenceDiagram
-    participant browser
-    participant server
+    participant Przeglądarka
+    participant Serwer
 
-    Note right of browser: User writes a note and clicks Save
+    Note right of Przeglądarka: Użytkownik wpisuje tekst i klika "Save"
 
-    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
-    activate server
-    server-->>browser: 302 Redirect to /notes
-    deactivate server
+    Przeglądarka->>Serwer: POST /new_note (dane formularza)
+    activate Serwer
+    Serwer-->>Przeglądarka: 302 Redirect do /notes
+    deactivate Serwer
 
-    Note right of browser: Browser reloads the Notes page
+    Note right of Przeglądarka: Przeglądarka przeładowuje stronę /notes
 
-    browser->>server: GET /notes
-    activate server
-    server-->>browser: HTML document
-    deactivate server
+    Przeglądarka->>Serwer: GET /notes
+    activate Serwer
+    Serwer-->>Przeglądarka: Dokument HTML
+    deactivate Serwer
 
-    browser->>server: GET /main.css
-    activate server
-    server-->>browser: CSS file
-    deactivate server
+    Przeglądarka->>Serwer: GET /main.css
+    Serwer-->>Przeglądarka: Plik CSS
 
-    browser->>server: GET /main.js
-    activate server
-    server-->>browser: JavaScript file
-    deactivate server
+    Przeglądarka->>Serwer: GET /main.js
+    Serwer-->>Przeglądarka: Plik JavaScript
 
-    Note right of browser: Browser executes JavaScript to fetch updated notes
+    Note right of Przeglądarka: JS pobiera dane notatek z serwera
 
-    browser->>server: GET /data.json
-    activate server
-    server-->>browser: JSON data (including new note)
-    deactivate server
+    Przeglądarka->>Serwer: GET /data.json
+    activate Serwer
+    Serwer-->>Przeglądarka: Dane JSON z nową notatką
+    deactivate Serwer
 
-    Note right of browser: Browser renders the updated note list
+    Note right of Przeglądarka: Przeglądarka renderuje zaktualizowaną listę notatek

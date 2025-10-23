@@ -1,23 +1,23 @@
 sequenceDiagram
-    participant browser
-    participant server
+    participant Przeglądarka
+    participant Serwer
 
-    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa
-    activate server
-    server-->>browser: HTML document
-    deactivate server
+    Przeglądarka->>Serwer: GET /spa
+    activate Serwer
+    Serwer-->>Przeglądarka: HTML dokument
+    deactivate Serwer
 
-    browser->>server: GET /main.css
-    activate server
-    server-->>browser: CSS file
-    deactivate server
+    Przeglądarka->>Serwer: GET /main.css
+    Serwer-->>Przeglądarka: Plik CSS
 
-    browser->>server: GET /spa.js
-    activate server
-    server-->>browser: JavaScript file
-    deactivate server
+    Przeglądarka->>Serwer: GET /spa.js
+    Serwer-->>Przeglądarka: Plik JavaScript
 
-    browser->>server: GET /data.json
-    activate server
-    server-->>browser: JSON data (list of notes)
-    deactivate server
+    Note right of Przeglądarka: Przeglądarka wykonuje JS i pobiera dane notatek
+
+    Przeglądarka->>Serwer: GET /data.json
+    activate Serwer
+    Serwer-->>Przeglądarka: Dane JSON (lista notatek)
+    deactivate Serwer
+
+    Note right of Przeglądarka: JS renderuje notatki dynamicznie bez przeładowania strony
