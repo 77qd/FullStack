@@ -1,1 +1,28 @@
+sequenceDiagram
+    participant browser
+    participant server
 
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+    activate server
+    server-->>browser: 302 Redirect to /notes
+    deactivate server
+
+    browser->>server: GET /notes
+    activate server
+    server-->>browser: HTML document
+    deactivate server
+
+    browser->>server: GET /main.css
+    activate server
+    server-->>browser: CSS file
+    deactivate server
+
+    browser->>server: GET /main.js
+    activate server
+    server-->>browser: JavaScript file
+    deactivate servertes
+
+    browser->>server: GET /data.json
+    activate server
+    server-->>browser: JSON data (including new note)
+    deactivate server
