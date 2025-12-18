@@ -1,57 +1,54 @@
-const Header = (props) => {
-  console.log(props)
-  return <h1>{props.course}</h1>
-}
+import { useState } from 'react'
 
-const Part = (props) => {
-  return (
-    <p>
-      {props.part} {props.exercises}
-    </p>
-  )
-}
+const Button = ({ text, onClick }) => (
+  <button onClick={onClick}>{text}</button>
+)
 
-const Content = (props) => {
-  return (
-    <div>
-      <Part part={props.parts[0].name} exercises={props.parts[0].exercises} />
-      <Part part={props.parts[1].name} exercises={props.parts[1].exercises} />
-      <Part part={props.parts[2].name} exercises={props.parts[2].exercises} />
-    </div>
-  )
-}
+const StatisticLine = ({ text, value }) => (
+  <tr>
+    <td>{text}</td>
+    <td>{value}</td>
+  </tr>
+)
 
-const Total = (props) => {
+const Statistics = ({ good, neutral, bad }) => {
+  const total = good + neutral + bad
+
+  if (total === 0) {
+    return <div>No feedback given</div>
+  }
+
+  const average = (good - bad) / total
+  const positive = (good / total) * 100
+
   return (
-    <p>
-      Number of exercises{" "}
-      {props.parts[0].exercises + props.parts[1].exercises + props.parts[2].exercises}
-    </p>
+    <table>
+      <tbody>
+        <StatisticLine text="good" value={good} />
+        <StatisticLine text="neutral" value={neutral} />
+        <StatisticLine text="bad" value={bad} />
+        <StatisticLine text="all" value={total} />
+        <StatisticLine text="average" value={average.toFixed(2)} />
+        <StatisticLine text="positive" value={positive.toFixed(1) + ' %'} />
+      </tbody>
+    </table>
   )
 }
 
 const App = () => {
-  const course = 'Half Stack application development'
-  const parts = [
-    {
-      name: 'Fundamentals of React',
-      exercises: 10
-    },
-    {
-      name: 'Using props to pass data',
-      exercises: 7
-    },
-    {
-      name: 'State of a component',
-      exercises: 14
-    }
-    ]
+  const [good, setGood] = useState(0)
+  const [neutral, setNeutral] = useState(0)
+  const [bad, setBad] = useState(0)
 
   return (
     <div>
-      <Header course={course} />
-      <Content parts={parts} />
-      <Total parts={parts} />
+      <h1>give feedback</h1>
+      <Button text="good" onClick={() => setGood(good + 1)} />
+      <Button text="neutral" onClick={() => setNeutral(neutral + 1)} />
+      <Button text="bad" onClick={() => setBad(bad + 1)} />
+
+      <h1>statistics</h1>
+      <Statistics good={good} neutral={neutral} bad={bad} />
     </div>
   )
 }
