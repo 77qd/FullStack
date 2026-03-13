@@ -20,11 +20,20 @@ const Content = (props) => {
   )
 }
 
+
 const Total = (props) => {
   return (
     <p>
       Number of exercises {props.exercises1 + props.exercises2 + props.exercises3}
     </p>
+  )
+}
+
+const Imie = () => {
+  return (
+  <div>
+    <p>Zadnie</p>
+  </div>
   )
 }
 
@@ -36,6 +45,7 @@ const App = () => {
   const exercises2 = 7
   const part3 = 'State of a component'
   const exercises3 = 14
+  const imie ="Zadnie"
 
   return (
     <div>
@@ -52,6 +62,9 @@ const App = () => {
         exercises1={exercises1}
         exercises2={exercises2}
         exercises3={exercises3}
+      />
+      <Imie
+      imie={imie}
       />
     </div>
   )
